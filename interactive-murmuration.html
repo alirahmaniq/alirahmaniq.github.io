@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Murmuration — Ali Rahmani</title>
+  <meta name="description" content="Interactive Murmuration — a gesture and posture-based memory game where players control a swarm of birds with their body. A game-development project by Ali Rahmani (CS:3980, University of Iowa)." />
+  <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* game project page */
+    .gp-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+    .gp-hero .grid-bg{position:absolute;inset:0;opacity:.5;
+      background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+      background-size:42px 42px;mask-image:radial-gradient(120% 100% at 85% 20%,#000,transparent 72%);
+      -webkit-mask-image:radial-gradient(120% 100% at 85% 20%,#000,transparent 72%)}
+    .gp-in{position:relative;max-width:var(--maxw);margin:0 auto;padding:44px 28px 38px}
+    .gp-kick{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--accent);margin:0 0 10px}
+    .gp-in h1{font-size:clamp(34px,5.5vw,54px);font-weight:600;letter-spacing:-.015em;margin:0 0 12px}
+    .gp-tagline{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,22px);color:var(--ink-soft);margin:0 0 16px;max-width:46ch}
+    .gp-byline{font-size:14px;color:var(--muted);margin:0}
+    .gp-byline b{color:var(--ink-soft);font-weight:600}
+    .backlink{display:inline-block;margin-bottom:18px;font-size:14px;font-weight:700;color:var(--accent);text-decoration:none}
+    .backlink:hover{text-decoration:underline}
+
+    .video-embed{position:relative;aspect-ratio:16/9;border-radius:14px;overflow:hidden;
+      border:1px solid var(--line);box-shadow:var(--shadow);background:#000;margin:32px 0 8px}
+    .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    .lead-p{color:var(--ink);font-size:19px}
+    .origins{list-style:none;padding:0;margin:0;display:grid;gap:12px}
+    .origins li{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);
+      border-radius:0 10px 10px 0;padding:14px 18px;color:var(--ink-soft)}
+    .origins b{color:var(--ink)}
+    .step{margin-bottom:22px}
+    .step h3{font-size:19px;margin:0 0 6px;color:var(--ink)}
+    .step p{margin:0;color:var(--ink-soft)}
+
+    .shots{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}
+    .shot{border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:var(--card);margin:0}
+    .shot img{display:block;width:100%;height:auto}
+    .shot figcaption{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--accent);text-align:center;padding:8px 4px;font-weight:700}
+    @media(max-width:640px){.shots{grid-template-columns:repeat(2,1fr)}}
+
+    table.cmd{width:100%;border-collapse:collapse;margin-top:18px;font-size:16px}
+    table.cmd th,table.cmd td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+    table.cmd th{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+    table.cmd td:first-child{font-weight:700;color:var(--ink)}
+    table.cmd td{color:var(--ink-soft)}
+
+    .diagram{background:#FBFAF6;border:1px solid var(--line);border-radius:14px;padding:16px 16px 10px;margin:22px 0 24px;overflow-x:auto}
+    .diagram img{display:block;width:100%;max-width:680px;height:auto;margin:0 auto}
+    .layers p{font-size:16px;color:var(--ink-soft);margin:0 0 14px}
+    .layers b{color:var(--ink)}
+
+    .future{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+    .future p{color:var(--ink-soft)}
+    .future ul{margin:10px 0 0;padding-left:20px}
+    .future li{margin-bottom:7px;color:var(--ink-soft)}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#overview">Skip to content</a>
+
+  <nav>
+    <div class="nav-in">
+      <a class="brand" href="index.html">Ali Rahmani</a>
+      <div class="navlinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#publications">Publications</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <button class="toggle" id="tg" aria-label="Toggle dark mode" title="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <header class="gp-hero">
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="gp-in">
+      <a class="backlink" href="index.html#projects">&larr; Back to projects</a>
+      <p class="gp-kick">Game Development · Project</p>
+      <h1>Interactive Murmuration</h1>
+      <p class="gp-tagline">A gesture and posture-based memory game where players control a living swarm of birds using their body.</p>
+      <p class="gp-byline"><b>By Ali Rahmani</b> · CS:3980 Game Development, University of Iowa · December 2025</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="video-embed">
+      <iframe src="https://www.youtube-nocookie.com/embed/RWB30uyP_tQ?rel=0" title="Interactive Murmuration demo"
+        loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+
+    <section id="overview" class="wrap" style="padding-left:0;padding-right:0">
+      <h2 class="sec">Overview</h2>
+      <p class="lead-p">Interactive Murmuration blends a "Simon Says" memory challenge with a real-time flocking simulation. The system shows you a sequence of glowing target spheres, and you replicate it using body postures captured through your webcam.</p>
+      <p style="color:var(--ink-soft)">The project sits at the intersection of AI, software engineering, cognitive science, art, and math.</p>
+    </section>
+
+    <section class="wrap" style="padding-left:0;padding-right:0">
+      <h2 class="sec">Origins</h2>
+      <ul class="origins">
+        <li><b>The spark.</b> Inspired by an interactive museum installation.</li>
+        <li><b>The shift to nature.</b> Witnessing a starling murmuration near home.</li>
+        <li><b>The technology.</b> Motion tracking, boids algorithms, and Three.js.</li>
+      </ul>
+    </section>
+
+    <section class="wrap" style="padding-left:0;padding-right:0">
+      <h2 class="sec">How It Works</h2>
+      <div class="step"><h3>The spatial setup</h3><p>Four target spheres sit at the cardinal directions (up, down, left, right). Each acts as an attractor for the particle simulation, so the birds swarm toward the active sphere.</p></div>
+      <div class="step"><h3>The watch phase</h3><p>The system generates a random sequence of directions. One sphere lights up at a time with a specific musical tone, and you memorize the pattern. Sequences scale from 2 steps (Level 1) up to 8 steps (Level 10).</p></div>
+      <div class="step"><h3>The physical interaction</h3><p>Using computer vision, you replicate the sequence with body postures. The webcam view is mirrored, so your movements match the sphere that responds.</p></div>
+
+      <div class="shots">
+        <figure class="shot"><img src="assets/game/up.webp" loading="lazy" alt="Hands-high posture, mapped to the Up command" /><figcaption>Up</figcaption></figure>
+        <figure class="shot"><img src="assets/game/down.webp" loading="lazy" alt="Hands-low posture, mapped to the Down command" /><figcaption>Down</figcaption></figure>
+        <figure class="shot"><img src="assets/game/left.webp" loading="lazy" alt="Left-extension posture, mapped to the Left command" /><figcaption>Left</figcaption></figure>
+        <figure class="shot"><img src="assets/game/right.webp" loading="lazy" alt="Right-extension posture, mapped to the Right command" /><figcaption>Right</figcaption></figure>
+      </div>
+
+      <table class="cmd">
+        <thead><tr><th>Posture</th><th>Command</th></tr></thead>
+        <tbody>
+          <tr><td>Hands high</td><td>Top sphere</td></tr>
+          <tr><td>Hands low</td><td>Bottom sphere</td></tr>
+          <tr><td>Left extension</td><td>Left sphere (mirrored)</td></tr>
+          <tr><td>Right extension</td><td>Right sphere (mirrored)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="wrap" style="padding-left:0;padding-right:0">
+      <h2 class="sec">Architecture</h2>
+      <p style="color:var(--ink-soft)">The system decouples AI input from the simulation across three layers, so heavy vision work never blocks the render loop.</p>
+      <div class="diagram"><img src="assets/game/architecture.svg" alt="Architecture diagram: the Eye captures and reads posture in Python, the Brain validates game state with Flask and Socket.IO, and the Visuals render the swarm with WebGPU and Three.js." /></div>
+      <div class="layers">
+        <p><b>The Eye (input, Python).</b> Captures webcam frames with OpenCV, runs lightweight skeleton tracking through TensorFlow Lite MoveNet, and calculates vector angles to determine intent locally before sending a command.</p>
+        <p><b>The Brain (server, Flask + Socket.IO).</b> The authoritative state manager. Gestures arrive over WebSockets and are validated against the active sequence. Level progression, scoring, and fail states are all handled on the backend.</p>
+        <p><b>The Visuals (render, WebGPU + Three.js).</b> Compute shaders run boid physics entirely on the GPU, producing a 60 FPS simulation of 2,400 agents that reacts instantly to network triggers with no CPU bottleneck.</p>
+      </div>
+    </section>
+
+    <section class="wrap" style="padding-left:0;padding-right:0;border-bottom:none">
+      <h2 class="sec">Research &amp; Future Directions</h2>
+      <div class="future">
+        <p>Because the game captures how players respond, react, and improve over time, it doubles as a platform for studying attention and working memory, not just a game to play. The same design also lends itself to rehabilitation and cognitive training for older adults.</p>
+        <p style="margin:0">That foundation opens several directions:</p>
+        <ul>
+          <li>integrating biometric sensors to deepen the research potential</li>
+          <li>turning player movement into generative music</li>
+          <li>expanding gestures into full dance-like choreography read from the flock's shape</li>
+          <li>adding multiplayer</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap" style="text-align:center;padding:40px 0">
+    <p class="foot-note">Iowa City, IA · University of Iowa · © <span id="yr">2026</span> Ali Rahmani</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
