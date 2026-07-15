@@ -1,0 +1,7 @@
+# Original full-resolution photos (kept locally, not deployed).
+# The web-optimized versions live in assets/gallery/ and ARE committed.
+/photos/
+
+# Game project source materials (kept locally, not deployed).
+# The web-optimized versions live in assets/game/ and ARE committed.
+/GameDevelopment/

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Discoveries — Ali Rahmani</title>
+  <meta name="description" content="A running list of things Ali Rahmani finds interesting — tools, projects, papers, and ideas worth a look." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* blog page */
+    .posts{margin-top:10px}
+    .post{padding:34px 0;border-bottom:1px solid var(--line);max-width:68ch}
+    .post:last-child{border-bottom:none}
+    .post .meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+    .post .date{font-family:var(--mono);font-size:13px;color:var(--muted)}
+    .post .ptag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+      color:var(--accent);background:var(--wash);padding:3px 9px;border-radius:6px}
+    .post h3{font-size:25px;font-weight:800;margin:0 0 10px;color:var(--ink);line-height:1.2}
+    .post p{margin:0 0 14px;color:var(--ink-soft)}
+    .post .readmore{font-size:15px;font-weight:700;color:var(--accent);text-decoration:none}
+    .post .readmore:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#posts">Skip to posts</a>
+
+  <nav>
+    <div class="nav-in">
+      <a class="brand" href="index.html">Ali Rahmani</a>
+      <div class="navlinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#publications">Publications</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#video">Timelapses</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <button class="toggle" id="tg" aria-label="Toggle dark mode" title="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <div class="gallery-hero">
+      <a class="back" href="index.html">&larr; Back to site</a>
+      <h2 class="sec" style="margin-top:14px">Discoveries</h2>
+      <p class="lead" style="margin-top:6px">A running list of things I find interesting — tools, projects, papers, and ideas worth a look.</p>
+    </div>
+
+    <div class="posts" id="posts">
+      <!--
+        To add a post, copy this block to the TOP of .posts (newest first) and fill it in:
+        <article class="post">
+          <div class="meta"><span class="date">Month DD, YYYY</span><span class="ptag">Tag</span></div>
+          <h3>Title</h3>
+          <p>A sentence or two.</p>
+          <a class="readmore" href="URL" target="_blank" rel="noopener">Link text ↗</a>   (optional)
+        </article>
+      -->
+      <article class="post">
+        <div class="meta"><span class="date">October 14, 2026</span><span class="ptag">Creative AI</span></div>
+        <h3>Cats Playing Chess</h3>
+        <p>My advisor, Tyler Bell, built this wonderful playground of AI-made experiments: interactive toys, little games, short films, and illustrated essays. It is exactly the kind of playful, hands-on creativity I love seeing in this space, and worth losing an afternoon to.</p>
+        <a class="readmore" href="https://catsplayingchess.com/" target="_blank" rel="noopener">Visit catsplayingchess.com ↗</a>
+      </article>
+    </div>
+  </main>
+
+  <footer class="wrap" style="text-align:center;padding:40px 0">
+    <p class="foot-note">Iowa City, IA · University of Iowa · © <span id="yr">2026</span> Ali Rahmani</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

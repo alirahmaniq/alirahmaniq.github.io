@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hello, shake me — Ali Rahmani</title>
+  <meta name="description" content="Hello, shake me — a tiny round-screen gadget that writes hello and gives you a kind word when you shake it. An ESP32-S3 hardware and firmware project by Ali Rahmani." />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* project page */
+    .gp-hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+    .gp-in{position:relative;max-width:var(--maxw);margin:0 auto;padding:44px 28px 38px}
+    .gp-kick{font-family:var(--sans);font-size:14px;font-weight:700;color:var(--accent);margin:0 0 10px}
+    .gp-in h1{font-size:clamp(34px,5.5vw,54px);font-weight:600;letter-spacing:-.015em;margin:0 0 12px}
+    .gp-tagline{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,22px);color:var(--ink-soft);margin:0 0 16px;max-width:48ch}
+    .gp-byline{font-size:14px;color:var(--muted);margin:0 0 22px}
+    .gp-byline b{color:var(--ink-soft);font-weight:600}
+    .gh-btn{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;text-decoration:none;
+      font-weight:700;font-size:15px;padding:11px 20px;border-radius:10px;box-shadow:var(--shadow)}
+    .gh-btn:hover{background:var(--accent-2)}
+    .backlink{display:inline-block;margin-bottom:18px;font-size:14px;font-weight:700;color:var(--accent);text-decoration:none}
+    .backlink:hover{text-decoration:underline}
+
+    .demo{padding:30px 0}
+    .demos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;max-width:640px;margin:0 auto;align-items:start}
+    .demo .frame{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:#111}
+    .demo video{display:block;width:100%;height:auto}
+    .demo .frame.yt{position:relative;aspect-ratio:9/16}
+    .demo .frame.yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .demo .cap{text-align:center;color:var(--muted);font-size:13px;margin-top:12px}
+    @media(max-width:620px){.demos{grid-template-columns:1fr;max-width:340px}}
+
+    .lead-p{color:var(--ink);font-size:19px}
+    .step{margin-bottom:22px}
+    .step h3{font-size:19px;margin:0 0 6px;color:var(--ink)}
+    .step p{margin:0;color:var(--ink-soft)}
+
+    .messages{display:grid;gap:12px;margin-top:8px;counter-reset:m}
+    .messages li{list-style:none;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);
+      border-radius:0 10px 10px 0;padding:14px 18px 14px 46px;position:relative;color:var(--ink-soft);font-size:16px}
+    .messages li::before{counter-increment:m;content:counter(m);position:absolute;left:16px;top:14px;
+      font-family:var(--mono);font-size:13px;font-weight:700;color:var(--accent)}
+
+    .specs{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+    .specs li{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 15px;font-size:14.5px;color:var(--ink-soft)}
+    .specs li b{display:block;color:var(--ink);font-size:13px;margin-bottom:2px}
+
+    .layers p{font-size:16px;color:var(--ink-soft);margin:0 0 14px}
+    .layers b{color:var(--ink)}
+    .future{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+    .future p{color:var(--ink-soft)}
+    .future ul{margin:10px 0 0;padding-left:20px}
+    .future li{margin-bottom:7px;color:var(--ink-soft)}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#overview">Skip to content</a>
+
+  <nav>
+    <div class="nav-in">
+      <a class="brand" href="index.html">Ali Rahmani</a>
+      <div class="navlinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#publications">Publications</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+      <button class="toggle" id="tg" aria-label="Toggle dark mode" title="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <header class="gp-hero">
+    <div class="gp-in">
+      <a class="backlink" href="index.html#projects">&larr; Back to projects</a>
+      <p class="gp-kick">Hardware · Firmware</p>
+      <h1>Hello, shake me</h1>
+      <p class="gp-tagline">A tiny round screen that says hello, and gives you a kind word when you shake it.</p>
+      <p class="gp-byline"><b>By Ali Rahmani</b> · ESP32-S3 round AMOLED · 2026</p>
+      <a class="gh-btn" href="https://github.com/alirahmaniq/hello-shake-me" target="_blank" rel="noopener">View on GitHub ↗</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="demo">
+      <div class="demos">
+        <div class="demo-item">
+          <div class="frame">
+            <video src="assets/hello-shake/demo.mp4" poster="assets/hello-shake/cover.webp" autoplay loop muted playsinline></video>
+          </div>
+          <p class="cap">Animated preview</p>
+        </div>
+        <div class="demo-item">
+          <div class="frame yt">
+            <iframe src="https://www.youtube-nocookie.com/embed/oJcF-h-4M5Q?rel=0" title="Hello, shake me — real device demo"
+              loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <p class="cap">The real device</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="overview" class="wrap" style="padding-left:0;padding-right:0">
+      <h2 class="sec">Overview</h2>
+      <p class="lead-p">Hello, shake me is a small, battery-powered gadget: a round screen that writes "hello" and, when you give it three quick shakes, shows a kind message with its own little animated scene and a short melody. After a few seconds it fades back to hello.</p>
+      <p style="color:var(--ink-soft)">No app, no account, no internet. It is a tiny object whose only job is to say something kind.</p>
+    </section>
+
+    <section class="wrap" style="padding-left:0;padding-right:0">
+      <h2 class="sec">How It Works</h2>
+      <div class="step"><h3>The hello screen</h3><p>A pen writes "hello" in a handwritten style, two butterflies land on the letters, and "shake me" fades in and wiggles now and then to invite you.</p></div>
+      <div class="step"><h3>Shake</h3><p>Three quick shakes play the next of five kindness messages. Each has its own animated scene and a short synthesized melody that lasts as long as the message is shown.</p></div>
+      <div class="step"><h3>Return</h3><p>The screen fades back to hello after a few seconds, or the on-board button returns you right away. Shakes during a message are ignored.</p></div>
+    </section>
+
+    <section class="wrap" style="padding-left:0;padding-right:0">
+      <h2 class="sec">The Five Messages</h2>
+      <ul class="messages">
+        <li>Your presence is a present to the world.</li>
+        <li>Hey stranger! You are so loved, and you make the world a better place.</li>
+        <li>I'm proud of you!</li>
+        <li>Be gentle with yourself. You're doing better than you think.</li>
+        <li>Even the longest night ends with a sunrise. Keep going.</li>
+      </ul>
+    </section>
+
+    <section class="wrap" style="padding-left:0;padding-right:0">
+      <h2 class="sec">Hardware</h2>
+      <p style="color:var(--ink-soft)">Built on the Waveshare ESP32-S3-Touch-AMOLED-1.75C board.</p>
+      <ul class="specs">
+        <li><b>Processor</b>ESP32-S3R8, 8 MB PSRAM, 32 MB flash</li>
+        <li><b>Display</b>466×466 round AMOLED (CO5300)</li>
+        <li><b>Motion</b>QMI8658 accelerometer for shake detection</li>
+        <li><b>Audio</b>ES8311 codec with speaker</li>
+        <li><b>Power</b>AXP2101 power management, battery-ready</li>
+      </ul>
+    </section>
+
+    <section class="wrap" style="padding-left:0;padding-right:0">
+      <h2 class="sec">Under the Hood</h2>
+      <div class="layers">
+        <p><b>Custom 2D renderer.</b> A hand-written renderer (g2d) draws anti-aliased paths, curves, transparency, and glows into a PSRAM frame buffer, with no GPU.</p>
+        <p><b>Fonts.</b> A small Python tool converts open-source fonts into compact glyph tables that fit on the device.</p>
+        <p><b>Audio.</b> A bell synthesizer runs on the second CPU core, mixing up to 24 voices at 16 kHz and streaming them over I2S.</p>
+        <p><b>Shake detection.</b> A dedicated task watches for three jolts above 1.2 g within one second, so everyday bumps are ignored.</p>
+        <p><b>Performance.</b> An optional display-library patch cuts full-frame time from 46 ms to 34 ms for smoother animation.</p>
+      </div>
+    </section>
+
+    <section class="wrap" style="padding-left:0;padding-right:0;border-bottom:none">
+      <h2 class="sec">Ideas &amp; Roadmap</h2>
+      <div class="future">
+        <p>The object sits at a nice intersection of hardware, HCI, and wellbeing — a greeting device, a small companion against loneliness, and a platform for studying how simple, kind interactions land.</p>
+        <p style="margin:0">Still on the list:</p>
+        <ul>
+          <li>custom messages sent over Bluetooth</li>
+          <li>more languages, including right-to-left scripts</li>
+          <li>deep sleep for much longer battery life</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap" style="text-align:center;padding:40px 0">
+    <p class="foot-note">Iowa City, IA · University of Iowa · © <span id="yr">2026</span> Ali Rahmani</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
